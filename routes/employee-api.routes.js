@@ -6,8 +6,9 @@ const employeeController = new EmployeeController();
 
 router.post('/login', employeeController.login);
 router.post('/register', employeeController.register);
+
 router.get('/getEmployeeDetails', passport.authenticate('jwt', { session: true }), employeeController.getEmployeeDetails);
-router.post('/leaveApply', employeeController.leaveApply);
-router.delete('/deleteLeave', employeeController.deleteLeave);
+router.post('/leaveApply', passport.authenticate('jwt', { session: true }), employeeController.leaveApply);
+router.delete('/deleteLeave',passport.authenticate('jwt', { session: true }), employeeController.deleteLeave);
 
 module.exports = router;
