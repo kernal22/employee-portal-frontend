@@ -17,10 +17,10 @@ class EmployeeBizClass {
                     return resolve(false);
                 }
                 const authenticated =  validService.comparePassword(reqBody.password, user.emp_password);
-                if(!authenticated) {
+                if(! authenticated) {
                     return resolve(false)
                 }
-                const token = jwtHelper.issue({ id: user.emp_id }, '1d');
+                const token = jwtHelper.issue({ id: user.username }, '1d');
                 return resolve(token);
             } catch (error) {
                 return reject(error);
